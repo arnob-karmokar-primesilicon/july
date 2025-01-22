@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from july.colormaps import cmaps_dict
 from matplotlib.pyplot import Axes
-from matplotlib.colors import ListedColormap, LinearSegmentedColormap
+from matplotlib.colors import ListedColormap, LinearSegmentedColormap, BoundaryNorm
 from matplotlib.ticker import ScalarFormatter
 from typing import List, Any, Optional, Union
 from datetime import date
@@ -57,6 +57,7 @@ def cal_heatmap(
     cmax: Optional[int] = None,
     cbar_label_format: Optional[str] = None,
     ax: Optional[Axes] = None,
+    norm: Optional[BoundaryNorm] = None,
 ):
     if not ax:
         figsize = (12, 5) if horizontal else (5, 12)
@@ -74,7 +75,7 @@ def cal_heatmap(
             f"'date_label'={date_label}."
         )
 
-    pc = ax.pcolormesh(cal, edgecolors=ax.get_facecolor(), linewidth=0.25, cmap=cmap)
+    pc = ax.pcolormesh(cal, edgecolors=ax.get_facecolor(), linewidth=0.25, cmap=cmap, norm=norm)
     pc.set_clim(cmin or np.nanmin(cal), cmax or np.nanmax(cal))
     ax.invert_yaxis()
     ax.set_aspect("equal")

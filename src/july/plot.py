@@ -4,7 +4,7 @@ import datetime
 import matplotlib.pyplot as plt
 from typing import List, Any, Optional, Union, Tuple
 from matplotlib.pyplot import Axes
-from matplotlib.colors import LinearSegmentedColormap, ListedColormap
+from matplotlib.colors import LinearSegmentedColormap, ListedColormap, BoundaryNorm
 from july.helpers import (
     date_grid,
     cal_heatmap,
@@ -35,6 +35,7 @@ def heatmap(
     cmax: Optional[int] = None,
     cbar_label_format: Optional[str] = None,
     ax: Optional[Axes] = None,
+    norm: Optional[BoundaryNorm] = None,
     **kwargs
 ) -> Axes:
     """Create heatmap of input dates and data.
@@ -92,6 +93,7 @@ def heatmap(
         cmax=cmax,
         cbar_label_format=cbar_label_format,
         ax=ax,
+        norm=norm
     )
 
     return ax
